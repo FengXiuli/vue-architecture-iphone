@@ -42,36 +42,42 @@ import {login, getUserInfo} from '@/api/login'
     methods: {
         
       submitForm(formName) {
+        this.$router.push("/")
         this.$refs[formName].validate((valid) => {
             //如果想要查看valid是什么，直接console.log(valid)即可
           if (valid) {
             //提交表单到后台，验证是否成功
             login(this.form.username, this.form.password).then(response => {
                 const resp =response.data
-                if(resp.flag) {
-                    //验证通过，通过token获取用户信息，进行异步请求
-                    getUserInfo(resp.data.token).then(response => {
-                        //获取到了用户的数据
-                        const respUser = response.data
-                        // 如果获取信息成功
-                        if(respUser.flag) {
-                            //将获取到的信息保存到浏览器的localStorage中
-                            // 要保存两个信息 1. token 2. 用户信息
-                            localStorage.setItem('mxg-msm-user', JSON.stringify(respUser.data))
-                            localStorage.setItem('mxg-msm-token', JSON.stringify(resp.data.token))
-                            //前往首页
-                            this.$router.push("/")
-                        }else {
-                            // 若获取信息失败，则弹出警告
-                            //此代码在Element-ui中的message中可以找到，直接复制过来
-                             this.$message({
-                                message: respUser.message,
-                                type: 'warning'
-                            });
-                        } 
-                        
-                    })
+                if(resp.result === 'ok') {
+                    this.$router.push("/")
                 }
+                // console.log(resp.flag)
+                // if(resp.flag) {
+                //     //验证通过，通过token获取用户信息，进行异步请求
+                //     getUserInfo(resp.data.token).then(response => {
+                //         //获取到了用户的数据
+                //         const respUser = response.data
+                        
+                //         // 如果获取信息成功
+                //         if(respUser.flag) {
+                //             //将获取到的信息保存到浏览器的localStorage中
+                //             // 要保存两个信息 1. token 2. 用户信息
+                //             localStorage.setItem('mxg-msm-user', JSON.stringify(respUser.data))
+                //             localStorage.setItem('mxg-msm-token', JSON.stringify(resp.data.token))
+                //             //前往首页
+                //             this.$router.push("/")
+                //         }else {
+                //             // 若获取信息失败，则弹出警告
+                //             //此代码在Element-ui中的message中可以找到，直接复制过来
+                //              this.$message({
+                //                 message: respUser.message,
+                //                 type: 'warning'
+                //             });
+                //         } 
+                        
+                //     })
+                // }
             })
           } else {
             //   如果用户名和密码没有通过，弹出警告

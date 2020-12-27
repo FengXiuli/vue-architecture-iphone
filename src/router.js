@@ -10,7 +10,7 @@ import Sensar from './views/sensar'
 import ElectricMeter from './views/electricMeter'
 import Switch from './views/switch'
 import Transceiver from './views/transceiver'
-import Meteorological from './views/meteorological'
+import My from './views/my'
 
 
 
@@ -92,12 +92,12 @@ export default new Router({
     },
     {
       //气象站
-      path: '/meteorological',
+      path: '/my',
       component: Layout,
       children: [
         {
           path: '/',
-          component: Meteorological,
+          component: My,
           meta: {title: '气象站'}
         }
       ]

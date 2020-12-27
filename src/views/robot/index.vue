@@ -1,26 +1,23 @@
 <template>
   <div class="robot-container">
+    <!-- 标题 -->
     <titl/>
-    <div class="robot-subcontainer">     
-      <el-row :gutter="20">
-        <el-col :span="6">
-          <dashboard/>
-        </el-col>
-        <el-col :span="10">
-        	
-        </el-col>
-        <el-col :span="8">111111</el-col>
-      </el-row>
-    </div>   
+    <div class="r-container">
+      <container1/>
+    </div>
+    <div class="r-container">
+      <container2/>
+    </div>
+    <div class="r-container">1</div>
   </div>
 </template>
 
 <script>
-  var echarts = require('echarts');
+  // var echarts = require('echarts');
   // title属于默认关键词，不能使用title
   import Titl from "./title.vue"
-  import Dashboard from "./dashboard.vue"
-  import Curve from "./curve.vue"
+  import Container1 from "./container1.vue" 
+  import Container2 from "./container2.vue" 
   export default {
   	data() {
         return {
@@ -53,9 +50,10 @@
         }
     },
     components: {
-      Titl,
-      Dashboard,
-      Curve
+      Container1,
+      Container2,
+      Titl
+
     }
   }
 </script>
@@ -63,14 +61,12 @@
 <style lang="scss" scoped>
 
 .robot-container {
-    width: 100%;
-    height: 1000px;
-    background: url("../../assets/robot_images/mainPicture.png") center center no-repeat;
-    color: white;
-    // min-width: 1000px;  
+  position: absolute;
+    left: 0px;
+    right: 0px;
+    height: 100%;
+    color: black;
 }
-.robot-subcontainer {
-   padding: 10px;
-}
+
 
 </style>

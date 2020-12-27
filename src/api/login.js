@@ -2,12 +2,12 @@ import request from '@/utils/request'
 
 //注意：导出的是普通成员函数 
 //登录 
-export function login(username, password) {
+export function login(id, password) {
     return request({
-        url: '/user/login',
+        url: 'v1/user/signin/',
         method: 'post',
         data: {
-            username,
+            id,
             password
         }
     })

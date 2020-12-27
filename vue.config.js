@@ -1,7 +1,19 @@
 module.exports = {
+    css: {
+        loaderOptions: {
+          css: {},
+          postcss: {
+            plugins: [
+              require('postcss-px2rem')({
+                remUnit: 64
+              })
+            ]
+          }
+        }
+    },
     devServer:{
         port: 8888,//端口号，如果端口号被占用，直接+1
-        host: "localhost",//主机名， 127.0.0.1 ，真机0.0.0.0
+        host: "0.0.0.0",//主机名， 127.0.0.1 ，真机0.0.0.0
         https: false,//协议
         open: true,//启动服务时自动打开浏览器访问
         proxy: {
@@ -15,7 +27,7 @@ module.exports = {
                 pathRewrite: {
                 //会将/dev-api替换为'',也就是/dev-api会移除，
                 //如/dev-api/db.json代理到https://localhost:8080/db.json 
-             ['^' + process.env.VUE_APP_BASE_API]:'',
+             ['^' + process.env.VUE_APP_BASE_API]:'/api',
                 }
             }
         }

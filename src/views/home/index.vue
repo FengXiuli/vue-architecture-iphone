@@ -1,12 +1,19 @@
 <template>
   <div>
-      <h3>home</h3>
+  	<!-- 轮播图 -->
+      <swipe></swipe>
+      <row1></row1>
   </div>
 </template>
 
 <script>
+	import Swipe from './swiper.vue'
+	import Row1 from './row1.vue'
 export default {
-
+	components: {
+		Swipe,
+		Row1,
+	}
 }
 </script>
 
